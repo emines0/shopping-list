@@ -1,6 +1,7 @@
 const itemForm = document.getElementById('item-form')
 const itemInput = document.getElementById('item-input')
 const itemList = document.getElementById('item-list')
+const clearBtn = document.getElementById('clear')
 
 // Functions
 
@@ -41,5 +42,21 @@ function addItem(e) {
     itemInput.value = ''
 }
 
+function removeItem(e) {
+    if (e.target.parentElement.classList.contains('remove-item')) {
+        // Check if user clicks on remove button icon
+        e.target.parentElement.parentElement.remove() // remove whole list item parent,parent element of an remove button icon
+    }
+}
+
+function clearItems(e) {
+    while (itemList.firstChild) {
+        // while itemList has first child
+        itemList.removeChild(itemList.firstChild) // remove first child from itemList
+    }
+}
+
 // Event Listeners
 itemForm.addEventListener('submit', addItem)
+itemList.addEventListener('click', removeItem)
+clearBtn.addEventListener('click', clearItems)
