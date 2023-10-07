@@ -79,7 +79,7 @@ function onAddItemSubmit(e) {
         itemToEdit.remove()
         isEditMode = false
     } else {
-        if (checkIfItemExist(newItem)) {
+        if (checkIfItemExist(newItem.toLowerCase())) {
             alert('That item already exist!')
             return
         }
@@ -132,9 +132,6 @@ function setItemToEdit(item) {
     formBtn.style.backgroundColor = '#228B22'
     // Set text content of edited item to the input field
     itemInput.value = item.textContent
-
-    // Update clicked item
-    updateItem()
 }
 
 function removeItem(item) {
@@ -189,7 +186,8 @@ function filterItems(e) {
 
 function checkIfItemExist(item) {
     const itemsFromStorage = getItemsFromStorage()
-    return itemsFromStorage.includes(item)
+
+    return itemsFromStorage.includes(item.toLowerCase())
 }
 
 function checkUI() {
